@@ -1,21 +1,26 @@
 from PyQt5.QtWidgets import QMainWindow
-from PyQt5.QtGui import QStandardItem
-from PyQt5.QtGui import QStandardItemModel
-from PyQt5.QtGui import QColor
-from PyQt5.QtCore import QVariant
-from PyQt5.QtCore import Qt
+from PyQt5.QtGui import (QStandardItem, QStandardItemModel, QColor)
+from PyQt5.QtCore import (QVariant, Qt)
 
 from .widgets.mainwindow import Ui_MainWindow
-from ..odoo.manager import Manager
+
+from ..odoo import Manager
+from ..data import ProgramData
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
         self.setupUi(self)
+
         self.update_list_button.clicked.connect(self.update_list)
         self.upgrade_button.clicked.connect(self.upgrade_selected_modules)
         self.install_button.clicked.connect(self.install_selected_modules)
         self.uninstall_button.clicked.connect(self.uninstall_selected_modules)
+
+        # self.save_button.clicked.connect(self.save_selected_modules)
+
+        # self._data = ProgramData()
+
         self._odoo_manager = Manager()
         self._odoo_manager.connect()
 
@@ -44,6 +49,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def uninstall_selected_modules(self):
         self._odoo_manager.uninstall_modules(self._get_selected_modules())
+
+    # def save_selected_modules(self):
+    #     self._data.set_modules(self._get_selected_modules())
 
     def _get_selected_modules(self):
         model = self.modules_list.model()

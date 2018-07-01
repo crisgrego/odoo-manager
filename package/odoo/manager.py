@@ -1,7 +1,7 @@
-import sys
+
 import odoorpc
 from .modules import Modules
-from .cfg import Cfg
+from ..settings import Cfg
 
 class Manager():
     def __init__(self):
@@ -23,7 +23,3 @@ class Manager():
 
     def get_modules(self):
         return Modules(self._odoo).get_all()
-
-    def print_all_modules(self):
-        for module in Modules(self._odoo).getAll():
-            print(module.name)
