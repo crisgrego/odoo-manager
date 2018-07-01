@@ -1,12 +1,11 @@
-from .widgets.mainwindow import Ui_MainWindow
 from PyQt5.QtWidgets import QMainWindow
 from PyQt5.QtGui import QStandardItem
 from PyQt5.QtGui import QStandardItemModel
 from PyQt5.QtGui import QColor
-from PyQt5.QtGui import QBrush
 from PyQt5.QtCore import QVariant
 from PyQt5.QtCore import Qt
 
+from .widgets.mainwindow import Ui_MainWindow
 from ..odoo.manager import Manager
 
 class MainWindow(QMainWindow, Ui_MainWindow):
