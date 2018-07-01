@@ -9,7 +9,8 @@ from ..data import ProgramData
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
-        super(MainWindow, self).__init__()
+        super(MainWindow, self).__init__(None, Qt.WindowStaysOnTopHint)
+
         self.setupUi(self)
 
         self.update_list_button.clicked.connect(self.update_list)
